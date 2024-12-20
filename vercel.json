@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "converter.py",
+      "use": "@vercel/python"
+    }
+  ]
+}
+￼Enter
