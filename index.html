@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video URL to MP3/MP4 Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Convert Video to MP3 or MP4</h1>
+  <div>
+    <input type="text" id="videoUrl" placeholder="Enter Video URL" style="width: 80%">
+    <button onclick="startConversion()">Convert</button>
+  </div>
+
+  <script>
+    function startConversion() {
+      const videoUrl = document.getElementById('videoUrl').value;
+
+      if (!videoUrl) {
+        alert("Please enter a video URL.");
+        return;
+      }
+
+      fetch("YOUR_VERCEL_FUNCTION_URL/api/convert", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: videoUrl }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === "success") {
+          alert("Conversion successful! MP3: " + data.mp3 + ", MP4: " + data.mp4);
+        } else {
+          alert("Error: " + data.message);
+        }
+      })
+      .catch(err => alert("Request failed: " + err));
+    }
+  </script>
+</body>
+</html>
