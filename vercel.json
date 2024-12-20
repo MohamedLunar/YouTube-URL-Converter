@@ -5,6 +5,11 @@
       "src": "converter.py",
       "use": "@vercel/python"
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "converter.py"
+    }
   ]
 }
-￼Enter
