@@ -32,7 +32,10 @@
         return;
       }
 
-      fetch("https://yt-url-converter.vercel.app", {
+      // Call an external API (e.g., ConvertAPI or YTD API)
+      const apiUrl = "https://api.convertapi.com/convert/video/to/mp3?Secret=YOUR_API_KEY"; // Replace with actual API URL and key
+
+      fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +45,7 @@
       .then(response => response.json())
       .then(data => {
         if (data.status === "success") {
-          alert("Conversion successful! MP3: " + data.mp3 + ", MP4: " + data.mp4);
+          alert("Conversion successful! MP3: " + data.mp3_url + ", MP4: " + data.mp4_url);
         } else {
           alert("Error: " + data.message);
         }
